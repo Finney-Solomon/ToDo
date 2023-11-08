@@ -2,10 +2,15 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "./Authentication/Login";
 import { Register } from "./Authentication/Register";
-import { TodoList } from "./Todos/TodoList";
+import { SnackbarNotification } from "../commonComponents/SnackbarNotification";
+import { TodoIndex } from "./Todos/TodoIndex";
+
+
 export const Layout = () => {
   return (
     <>
+
+
       <div
         style={{
           background: "url(/Images/background.jpeg)",
@@ -24,10 +29,11 @@ export const Layout = () => {
             <Routes>
               <Route index element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/todo" element={<TodoList />} />
+              <Route path="/todoIndex" element={<TodoIndex />} />
             </Routes>
           </BrowserRouter>
         </>
+        <SnackbarNotification/>
       </div>
     </>
   );

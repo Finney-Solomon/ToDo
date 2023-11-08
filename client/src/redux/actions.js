@@ -1,18 +1,70 @@
+
 import axios from "../api/api";
 
-export const login = (username, password) => async (dispatch) => {
+
+
+export const setCurrentUser = (payload) => {
+  return {
+    type: "SET_CURRENT_USER",
+    payload,
+  };
+};
+export const userToken = (payload) => {
+  return {
+    type: "USER_TOKEN",
+    payload,
+  };
+};
+export const openCloseSnackbarNotification = (payload) => {
+  return {
+    type: "OPEN_CLOSE_SNACKBAR_NOTIFICATION",
+    payload,
+  };
+};
+
+export const login = (username, password,navigate) => async (dispatch) => {
+
+
   try {
     const response = await axios.post("/users/login", { username, password });
-    const token = response.data.token;
-    console.log(token);
-    // Save the token in Redux state or local storage
-    // For example: dispatch({ type: 'LOGIN_SUCCESS', payload: token });
-    // You should also decode and verify the token to get user information
-    //     const user = jwt.decode(token);
-    // Dispatch user information to Redux state
-    // For example: dispatch({ type: 'SET_USER', payload: user });
+    const data = response.data;
+
+    if (response.data.success) {
+      dispatch(userToken(data.token));
+      // <Route path="/TodoIndex"/>
+    
+      dispatch(setCurrentUser(data.userDetails));
+      const notification = {
+        type: "success",
+        message: "Login Successful",
+        open: true,
+      };
+      dispatch(openCloseSnackbarNotification(notification));
+       // Redirect to the "/TodoIndex" route
+      //  window.location.href = '/todoIndex';
+    
+       navigate("/todoIndex")
+    } else {
+      const notification = {
+        type: "error",
+        message: "Invalid Credentials",
+        open: true,
+      };
+      dispatch(openCloseSnackbarNotification(notification));
+    }
   } catch (error) {
-    // Handle login error
+    const notification = {
+      type: "error",
+      message: "Invalid Credentials",
+      open: true,
+    };
+    dispatch(openCloseSnackbarNotification(notification));
   }
 };
-export const register = () => {};
+export const register = (payload) => async (dispatch) => {
+  try {
+    const response = await axios.post("/users/register", { ...payload });
+    const token = response.data;
+    alert(token.userDetails);
+  } catch {}
+};

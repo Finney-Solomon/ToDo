@@ -6,6 +6,7 @@ const initialState = {
     email: "",
     phoneNumber: "",
     username: "",
+    _id:""
   },
   todo: {
     id: "",
@@ -13,20 +14,37 @@ const initialState = {
     toDoHeading: "",
     date: "",
   },
+  snackbar: {
+    open: false,
+    message: "",
+    type: "",
+  },
 };
 
-export const reducer = (state = initialState, action) => {
-  const { type, payload } = action;
+export const reducer = (state = initialState, actions) => {
+  const { type, payload } = actions;
   switch (type) {
-    case "OPEN_SIGN_UP_PAGE": {
+    case "USER_TOKEN": {
+      return { ...state, token: payload };
+    }
+    case "SET_CURRENT_USER": {
+      return { ...state, user: payload };
+     
+
+    }
+    case "OPEN_CLOSE_SNACKBAR_NOTIFICATION": {
       return {
         ...state,
-        signUpPage: payload,
-        timer: false,
+        snackbar: {
+          open: payload.open,
+          message: payload.message,
+          type: payload.type,
+        },
       };
-      break;
     }
+
+    // eslint-disable-next-line no-fallthrough
     default:
-      break;
+      return { ...state };
   }
 };
