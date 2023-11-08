@@ -1,6 +1,11 @@
 .App {
   text-align: center;
+  /* background: url(/client/public/Images/background.jpg); */
+
+
 }
+
+
 
 .App-logo {
   height: 40vmin;
@@ -32,6 +37,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

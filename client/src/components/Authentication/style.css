@@ -1,0 +1,15 @@
+.sign-in-box-container {
+  align-items: center;
+  justify-content: center;
+  color: #eee8e8;
+  width: 22vw;
+  height: 50vh;
+  /* flex: 0 1 auto;
+  width: 22vw;
+  height: 50vh;
+  margin-left: auto;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+  margin-top: 25vh */
+}
