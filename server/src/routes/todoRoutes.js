@@ -5,8 +5,9 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.get("/", todoController.getTodos);
-router.post("/", todoController.createTodo);
+router.post("/selectedTodo", todoController.getTodo);
+router.get("/titleList", todoController.getTodoTitleList);
+router.post("/addNew", todoController.createTodo);
 router.put("/:id", todoController.updateTodo);
 router.delete("/:id", todoController.deleteTodo);
 

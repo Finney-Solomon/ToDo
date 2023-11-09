@@ -5,12 +5,9 @@ import { Register } from "./Authentication/Register";
 import { SnackbarNotification } from "../commonComponents/SnackbarNotification";
 import { TodoIndex } from "./Todos/TodoIndex";
 
-
 export const Layout = () => {
   return (
     <>
-
-
       <div
         style={{
           background: "url(/Images/background.jpeg)",
@@ -27,13 +24,13 @@ export const Layout = () => {
         <>
           <BrowserRouter>
             <Routes>
-              <Route index element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/todoIndex" element={<TodoIndex />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<TodoIndex />} />
             </Routes>
           </BrowserRouter>
         </>
-        <SnackbarNotification/>
+        <SnackbarNotification />
       </div>
     </>
   );

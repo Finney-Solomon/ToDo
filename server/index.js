@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/users", userRoutes);
-app.use("/todos", authMiddleware, todoRoutes);
+app.use("/todo", authMiddleware, todoRoutes);
 
 app.listen(5001, () => {
   console.log("Server is running on port 5001");

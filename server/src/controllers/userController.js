@@ -51,7 +51,7 @@ module.exports = {
         "-password -confirmPassword"
       );
 
-      res.status(201).json({"success": true, token, userDetails });
+      res.status(201).json({ success: true, token, userDetails });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
@@ -75,14 +75,13 @@ module.exports = {
       if (!isPasswordValid) {
         return res.status(400).json({ message: "Invalid password" });
       }
-     
+
       const userDetails = await User.findById(user._id).select(
         "-password -confirmPassword -__v"
       );
 
-
       const token = jwt.sign({ userId: user._id });
-      res.status(200).json({success:true, token,userDetails });
+      res.status(200).json({ success: true, token, userDetails });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
@@ -91,8 +90,22 @@ module.exports = {
 
   getUserProfile: async (req, res) => {
     try {
+    
       const user = await User.findById(req.userId).select("-password");
       res.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+
+  logoutUser: async (req, res) => {
+    try {
+      // You may want to perform additional actions here, such as logging the user out of your frontend application
+      // For now, let's just clear the token from the client side
+      res.clearCookie(jwt); // Assuming you set your token as a cookie
+
+      res.status(200).json({ success: true, message: "Logout successful" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });

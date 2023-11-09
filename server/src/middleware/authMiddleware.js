@@ -2,7 +2,7 @@
 const jwt = require("../configuration/jwt");
 
 module.exports = (req, res, next) => {
-  const token = req.header("x-auth-token");
+  const token = req.header("X_auth_token");
 
   if (!token) {
     return res.status(401).json({ message: "No token, authorization denied" });

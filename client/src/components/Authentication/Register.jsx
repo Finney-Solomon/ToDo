@@ -2,8 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/actions";
-import { Button, FormControl, Grid, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import {
+  Button,
+  FormControl,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const [username, setUsername] = useState("");
@@ -13,6 +19,8 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const handleRegister = () => {
     const payload = {
       username: username,
@@ -20,9 +28,9 @@ export const Register = () => {
       lastName: lastName,
       phoneNumber: phoneNumber,
       password: password,
-      confirmPassword: confirmPassword
-    }
-    dispatch(register(payload));
+      confirmPassword: confirmPassword,
+    };
+    dispatch(register(payload, navigate));
   };
   return (
     <>
@@ -112,13 +120,10 @@ export const Register = () => {
         <br />
         <Grid>
           <Grid item>
-            <Link to="/">
-              Have an account? Login
-            </Link>
+            <Link to="/">Have an account? Login</Link>
           </Grid>
         </Grid>
       </FormControl>
     </>
-
   );
 };
