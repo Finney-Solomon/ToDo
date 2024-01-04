@@ -12,7 +12,7 @@ export const TodoIndex = () => {
         spacing={2}
         sx={{
           paddingTop: "0em", // Adjusted paddingTop
-          marginBottom: "2em",
+          marginBottom: "0em",
         }}
       >
         <Grid item xs={12} md={12} sm={12} zeroMinWidth>

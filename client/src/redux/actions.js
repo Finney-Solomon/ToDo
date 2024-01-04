@@ -58,6 +58,7 @@ export const login = (username, password, navigate) => async (dispatch) => {
     const response = await axios.post("/users/login", { username, password });
     const data = response.data;
     localStorage.setItem("x-auth-token", data.token);
+    console.log(localStorage,"localStorage")
     if (response.data.success) {
       dispatch(userExist(true));
       dispatch(setCurrentUser(data.userDetails));

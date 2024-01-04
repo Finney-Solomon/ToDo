@@ -3,7 +3,7 @@ const token = localStorage.getItem("x-auth-token");
 const api = axios.create({
   baseURL: "http://localhost:5001",
   headers: {
-    Accept: " X_auth_token",
+    Accept: "x-auth-token",
     x_auth_token: token,
   },
 });

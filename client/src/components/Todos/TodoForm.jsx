@@ -72,7 +72,7 @@ export const TodoForm = () => {
         label="Multiline Placeholder"
         placeholder="Description"
         multiline
-        minRows={25}
+        minRows={20}
         style={{
           fontSize: "xx-larger",
           color: "#323131",
